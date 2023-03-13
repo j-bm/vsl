@@ -111,9 +111,9 @@ pub fn create_plan[T](x T) ?Fftplan {
 // The output result (r) is returned in-place, and is complex
 // and real numbers mixed as follows:
 //    r[0] (im[0] is assumed and is 0)
-//    r[1] im[1] ... r[n/2] im[n/2]   positive frequences
+//    r[1] im[1] ... r[n/2] im[n/2]   conjugate negative frequences
 //    r[n] is the magnitude at zero frequency (im[n] is assumed and is 0)
-// Negative frequencies are excluded as these are symmetric to the positive
+// Positive frequencies are excluded as these are symmetric to the negative
 // frequencies for real inputs.  (Consult any signal processing text for details.)
 //
 // To generate a complete result, copy the results to a larger complex array
@@ -123,8 +123,8 @@ pub fn create_plan[T](x T) ?Fftplan {
 //   r[3] and i*-r[4]
 //   ...
 //   r[n] and i*0     at the zero frequency
-//   r[n-2] and i*r[n-1]
-//   r[n-4] and i*r[n-3]
+//   r[n-2] and i*r[n-1]   the complex conjugate negative frequencies
+//   r[n-4] and i*r[n-3]   in reverse order
 //   ...
 //   r[1] and i*r[2]
 //
