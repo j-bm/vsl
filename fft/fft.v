@@ -55,19 +55,23 @@ fn C.make_rfft_plan_f64(length int) C.rfft_plan_f64
 fn C.destroy_rfft_plan_f64(plan C.rfft_plan_f64)
 
 struct Fft32 {
-	mut: plan C.rfft_plan_f32
+mut:
+	plan C.rfft_plan_f32
 }
 
 struct Fft64 {
-	mut: plan C.rfft_plan_f64
+mut:
+	plan C.rfft_plan_f64
 }
 
 struct Cfft32 {
-	mut: plan C.cfft_plan_f32
+mut:
+	plan C.cfft_plan_f32
 }
 
 struct Cfft64 {
-	mut: plan C.cfft_plan_f64
+mut:
+	plan C.cfft_plan_f64
 }
 
 type Fftplan = Cfft32 | Cfft64 | Fft32 | Fft64
@@ -84,19 +88,18 @@ pub mut:
 	im f64
 }
 
-
 // create_plan returns a plan to compute a Fourier transform of the given array
 // A plan is reusable for any array of exactly this size and type.
 // The array may be []f32, []f64, or []complx_f32 or []complex_f64.
 pub fn create_plan[T](x T) ?Fftplan {
 	$if T is []f32 {
-		return Fftplan(Fft32{ C.make_rfft_plan_f32(x.len) })
+		return Fftplan(Fft32{C.make_rfft_plan_f32(x.len)})
 	} $else $if T is []f64 {
-		return Fftplan(Fft64{ C.make_rfft_plan_f64(x.len) })
+		return Fftplan(Fft64{C.make_rfft_plan_f64(x.len)})
 	} $else $if T is []cmplx_f32 {
-		return Fftplan(Cfft32{ C.make_cfft_plan_f32(x.len) })
+		return Fftplan(Cfft32{C.make_cfft_plan_f32(x.len)})
 	} $else $if T is []cmplx_f64 {
-		return Fftplan(Cfft64{ C.make_cfft_plan_f64(x.len) })
+		return Fftplan(Cfft64{C.make_cfft_plan_f64(x.len)})
 	} $else {
 		eprintln('fftplan unsupported type: ${typeof(x).name}')
 	}
@@ -114,7 +117,7 @@ pub fn create_plan[T](x T) ?Fftplan {
 // frequencies for real inputs.  (Consult any signal processing text for details.)
 //
 // To generate a complete result, copy the results to a larger complex array
-// using 
+// using
 //   r[0] and i*0
 //   r[1] and i*-r[2]
 //   r[3] and i*-r[4]

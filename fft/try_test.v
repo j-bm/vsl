@@ -12,13 +12,13 @@ fn test_fft() {
 	mut p := fft.create_plan(aline)?
 	mut x := fft.forward_fft(p, aline)
 	println('forw ${x} ${aline}')
-	assert aline[0] == f32(1.0) 
-	assert aline[1] == f32(1.0) 
+	assert aline[0] == f32(1.0)
+	assert aline[1] == f32(1.0)
 
 	x = fft.backward_fft(p, aline)
 	println('back ${x} ${aline}')
-	assert aline[0] == f32(2.0) 
-	assert aline[1] == f32(0.0) 
+	assert aline[0] == f32(2.0)
+	assert aline[1] == f32(0.0)
 	println('')
 
 	// four element FT
@@ -29,17 +29,17 @@ fn test_fft() {
 	p = fft.create_plan(aline)?
 	mut y := fft.forward_fft(p, aline)
 	println('forw ${y} ${aline}')
-	assert aline[0] == f32(1.0) 
-	assert aline[1] == f32(0.0) 
-	assert aline[2] == f32(-1.0) 
-	assert aline[3] == f32(-1.0) 
+	assert aline[0] == f32(1.0)
+	assert aline[1] == f32(0.0)
+	assert aline[2] == f32(-1.0)
+	assert aline[3] == f32(-1.0)
 
 	x = fft.backward_fft(p, aline)
 	println('back ${x} ${aline}')
-	assert aline[0] == f32(0.0) 
-	assert aline[1] == f32(4.0) 
-	assert aline[2] == f32(0.0) 
-	assert aline[3] == f32(0.0) 
+	assert aline[0] == f32(0.0)
+	assert aline[1] == f32(4.0)
+	assert aline[2] == f32(0.0)
+	assert aline[3] == f32(0.0)
 	println('')
 
 	// a signal
@@ -53,10 +53,10 @@ fn test_fft() {
 	println('sgnl ${y} ${aline}')
 	y = fft.forward_fft(p, aline)
 	println('forw ${y} ${aline}')
-	assert aline[0] == f32(4.0) 
-	assert aline[1] == f32(-0.5) 
-	assert aline[2] == f32(1.5) 
-	assert aline[3] == f32(-1.0) 
+	assert aline[0] == f32(4.0)
+	assert aline[1] == f32(-0.5)
+	assert aline[2] == f32(1.5)
+	assert aline[3] == f32(-1.0)
 	println('wolf 0 {4, -0.5 - 1.5 i, -1, -0.5 + 1.5 i}')
 	println('')
 
@@ -70,10 +70,10 @@ fn test_fft() {
 	println('sgnl ${y} ${aline}')
 	y = fft.forward_fft(p, aline)
 	println('forw ${y} ${aline}')
-	assert aline[0] == f32(0.0) 
-	assert aline[1] == f32(-0.5) 
-	assert aline[2] == f32(1.5) 
-	assert aline[3] == f32(-1.0) 
+	assert aline[0] == f32(0.0)
+	assert aline[1] == f32(-0.5)
+	assert aline[2] == f32(1.5)
+	assert aline[3] == f32(-1.0)
 	println('wolf 0 {0, -0.5 - 1.5 i, -1, -0.5 + 1.5 i}')
 	println('')
 
@@ -90,5 +90,4 @@ fn test_fft() {
 	assert aline[7] == -2.0
 	println('wolf 0 { 12.998 + 0. i, -1.85327 - 2.76735 i, -0.499924 - 2.49962 i, -1.14627 - 0.767651 i, -1.9997 + 0. i, -1.14627 + 0.767651 i, -0.499924 + 2.49962 i, -1.85327 + 2.76735 i}')
 	println('')
-
 }
