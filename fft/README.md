@@ -12,8 +12,8 @@ of conjugate negative frequencies:
 
 _r0 r1 i1 r2 i2 r3 i3 ... rx_
 
-where r0 - i*0 is the first complex result, r1 - i*i1 is the second, and so on
-until the rx+i*0 (where x is n/2) is the last. (Note the minus signs.)
+where r0 + *i*0 is the first complex result, r1 - *i*i1 is the second, and so on
+until rx + *i*0 (where x is n/2) is the last. (Note the minus signs.)
 
 The positive frequencies are the same as the negative frequencies in reverse
 order.  See the reference
